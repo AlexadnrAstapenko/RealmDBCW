@@ -22,7 +22,7 @@ class StorageManager {
             print("Error func deleteAll")
         }
     }
-    
+
     static func saveTaskList(taskList: TaskList) {
         do {
             try realm.write {
@@ -32,13 +32,34 @@ class StorageManager {
             print("Error func saveTaskList")
         }
     }
-    static func saveTask(taskList: TaskList, task: Task ) {
+
+    static func saveTask(taskList: TaskList, task: Task) {
         do {
             try realm.write {
                 taskList.task.append(task)
             }
         } catch {
             print("Error func saveTaskList")
+        }
+    }
+
+    static func deleteTask(taskList: TaskList) {
+        do {
+            try realm.write {
+                realm.delete(taskList)
+            }
+        } catch {
+            print("Error func deleteTask")
+        }
+    }
+// Не разобрался немного как работает ^_^
+    static func editTask(taskList: TaskList) {
+        do {
+            try realm.write {
+                realm.add(taskList, update: .modified)
+            }
+        } catch {
+            print("Error func editTask")
         }
     }
 }
