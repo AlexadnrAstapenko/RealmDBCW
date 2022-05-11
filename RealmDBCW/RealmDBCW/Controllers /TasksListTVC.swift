@@ -21,7 +21,10 @@ class TasksListTVC: UITableViewController {
     }
 
     @IBAction func addButtonPress(_: UIBarButtonItem) {
-        alertForAddingList()
+        alertForAddingList(title: "New list",
+                           message: "Please insert list name",
+                           buttonTitle: "Save",
+                           placeHolder: "List name")
     }
 
     // MARK: - Table view data source
@@ -35,63 +38,45 @@ class TasksListTVC: UITableViewController {
         tasksLists.count
     }
 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let taskList = tasksLists[indexPath.row]
+        cell.textLabel?.text = taskList.name
+        cell.detailTextLabel?.text = String(taskList.task.count)
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+            let task = self.tasksLists[indexPath.row]
+            StorageManager.deleteTask(taskList: task)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            completion(true)
+        }
+
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { _, _, completion in
+            completion(true)
+        }
+
+        let doneAction = UIContextualAction(style: .normal, title: "Done") { _, _, completion in
+            completion(true)
+        }
+        editAction.backgroundColor = .systemOrange
+        doneAction.backgroundColor = .systemGreen
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction, doneAction])
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
+        guard let dvc = segue.destination as? TaskTVC,
+              let indexPath = tableView.indexPathForSelectedRow else { return }
+        dvc.currentTasksList = tasksLists[indexPath.row]
+    }
+
     // MARK: Private
 
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-         let taskList = tasksLists[indexPath.row]
-         cell.textLabel?.text = taskList.name
-         cell.detailTextLabel?.text = String(taskList.task.count)
-         return cell
-     }
-
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-         // Return false if you do not want the specified item to be editable.
-         return true
-     }
-     */
-
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-         if editingStyle == .delete {
-             // Delete the row from the data source
-             tableView.deleteRows(at: [indexPath], with: .fade)
-         } else if editingStyle == .insert {
-             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-         }
-     }
-     */
-
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-     }
-     */
-
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-         // Return false if you do not want the item to be re-orderable.
-         return true
-     }
-     */
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let dvc = segue.destination as? TaskTVC,
-        let indexPath = tableView.indexPathForSelectedRow else { return  }
-         dvc.currentTasksList = tasksLists[indexPath.row]
-     }
-
-    private func alertForAddingList() {
-        let title = "New list"
-        let message = "Please insert list name"
-        let buttonTitle = "Save"
+    private func alertForAddingList(title: String, message: String, buttonTitle: String, placeHolder: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let saveAction = UIAlertAction(title: buttonTitle, style: .default) { _ in
@@ -99,18 +84,16 @@ class TasksListTVC: UITableViewController {
                   let name = textField.text else { return }
             let task = TaskList()
             task.name = name
-            
             StorageManager.saveTaskList(taskList: task)
-            
-            self.tableView.insertRows(at: [IndexPath(row: self.tasksLists.count - 1 , section: 0)], with: .automatic)
+
+            self.tableView.insertRows(at: [IndexPath(row: self.tasksLists.count - 1, section: 0)], with: .automatic)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
-
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
 
         alert.addTextField { textField in
-            textField.placeholder = "List name"
+            textField.placeholder = placeHolder
         }
         present(alert, animated: true)
     }
