@@ -22,6 +22,9 @@
                                 <segment title=" A-Z"/>
                                 <segment title="Date"/>
                             </segments>
+                            <connections>
+                                <action selector="sortingSegmentioControll:" destination="Yls-ku-RmC" eventType="valueChanged" id="FdG-8s-iiD"/>
+                            </connections>
                         </segmentedControl>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="3zV-nq-ufY" detailTextLabel="QVa-Lb-Ixc" style="IBUITableViewCellStyleValue1" id="12v-aL-gOh">
@@ -57,13 +60,7 @@
                             <outlet property="delegate" destination="Yls-ku-RmC" id="LqK-Cz-VNF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Categoryes" id="sEv-9n-6GO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="W5o-wC-Rzg">
-                            <connections>
-                                <action selector="addButtonPress:" destination="Yls-ku-RmC" id="NRb-h4-zer"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Categoryes" id="sEv-9n-6GO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhI-aA-7Ya" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,16 +105,7 @@
                             <outlet property="delegate" destination="YXi-IK-yjG" id="WHL-oh-nJM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="rbh-VO-3LU">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="xbO-do-V0N">
-                                <connections>
-                                    <action selector="addTask:" destination="YXi-IK-yjG" id="Ggt-dv-Llz"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Edit" id="pvv-Nb-p3v"/>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="rbh-VO-3LU"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohu-yL-uax" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
