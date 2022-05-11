@@ -19,47 +19,94 @@ class StorageManager {
                 realm.deleteAll()
             }
         } catch {
-            print("Error func deleteAll")
+            print("error deleteAll")
         }
     }
-
+    
     static func saveTaskList(taskList: TaskList) {
         do {
             try realm.write {
                 realm.add(taskList)
             }
         } catch {
-            print("Error func saveTaskList")
+            print("error deleteAll")
+        }
+    }
+    
+    static func makeAllDone(taskList: TaskList) {
+        do {
+            try realm.write {
+                taskList.task.setValue(true, forKey: "isComplit")
+            }
+        } catch {
+            print("error deleteAll")
+        }
+    }
+    
+    static func deleteTaskList(taskList: TaskList) {
+        do {
+            try realm.write {
+                let tasks = taskList.task
+                realm.delete(tasks)
+                realm.delete(taskList)
+            }
+        } catch {
+            print("error deleteAll")
+        }
+    }
+    
+    static func editTaskList(taskList: TaskList,
+                              newTaskistName: String) {
+        do {
+            try realm.write {
+                taskList.name = newTaskistName
+            }
+        } catch {
+            print("error deleteAll")
+        }
+    }
+    
+    static func deleteTask(task: Task) {
+        do {
+            try realm.write {
+                realm.delete(task)
+            }
+        } catch {
+            print("error deleteAll")
+        }
+    }
+    
+    static func editTask(task: Task,
+                         newNameTask : String,
+                         noteTask : String) {
+        do {
+            try realm.write {
+                task.name = newNameTask
+                task.note = noteTask
+            }
+        } catch {
+            print("error deleteAll")
         }
     }
 
-    static func saveTask(taskList: TaskList, task: Task) {
+    static func makeDone(task: Task) {
+        do {
+            try realm.write {
+                task.isComplit.toggle()
+            }
+        } catch {
+            print("error deleteAll")
+        }
+    }
+    
+    static func saveNewTask(taskList: TaskList, task: Task) {
         do {
             try realm.write {
                 taskList.task.append(task)
             }
         } catch {
-            print("Error func saveTaskList")
-        }
-    }
-
-    static func deleteTask(taskList: TaskList) {
-        do {
-            try realm.write {
-                realm.delete(taskList)
-            }
-        } catch {
-            print("Error func deleteTask")
-        }
-    }
-// Не разобрался немного как работает ^_^
-    static func editTask(taskList: TaskList) {
-        do {
-            try realm.write {
-                realm.add(taskList, update: .modified)
-            }
-        } catch {
-            print("Error func editTask")
+            print("error saveNewTask")
         }
     }
 }
+

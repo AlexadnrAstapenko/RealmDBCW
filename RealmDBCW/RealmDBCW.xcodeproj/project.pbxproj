@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		620EE9D3282C1ED3008146DB /* UiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620EE9D2282C1ED3008146DB /* UiTableViewCell.swift */; };
 		626CBA3C28218F1A007C86CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626CBA3B28218F1A007C86CF /* AppDelegate.swift */; };
 		626CBA3E28218F1A007C86CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626CBA3D28218F1A007C86CF /* SceneDelegate.swift */; };
 		626CBA4328218F1A007C86CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 626CBA4128218F1A007C86CF /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		620EE9D2282C1ED3008146DB /* UiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiTableViewCell.swift; sourceTree = "<group>"; };
 		626CBA3828218F1A007C86CF /* RealmDBCW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmDBCW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		626CBA3B28218F1A007C86CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		626CBA3D28218F1A007C86CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		620EE9D1282C1E52008146DB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				620EE9D2282C1ED3008146DB /* UiTableViewCell.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		626CBA2F28218F1A007C86CF = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +78,7 @@
 		626CBA3A28218F1A007C86CF /* RealmDBCW */ = {
 			isa = PBXGroup;
 			children = (
+				620EE9D1282C1E52008146DB /* Extensions */,
 				626CBA602821972B007C86CF /* Managers */,
 				626CBA572821906C007C86CF /* Model */,
 				626CBA5628219061007C86CF /* Controllers  */,
@@ -202,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				626CBA5F2821937E007C86CF /* TaskTVC.swift in Sources */,
+				620EE9D3282C1ED3008146DB /* UiTableViewCell.swift in Sources */,
 				626CBA5D2821935E007C86CF /* TasksListTVC.swift in Sources */,
 				626CBA5928219158007C86CF /* Task.swift in Sources */,
 				626CBA6228219745007C86CF /* StorageManager.swift in Sources */,
@@ -354,6 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 736UK4853Y;
@@ -371,6 +384,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = work.RealmDBCW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -382,6 +396,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 736UK4853Y;
@@ -399,6 +414,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = work.RealmDBCW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
