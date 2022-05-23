@@ -27,6 +27,7 @@ class TaskTVC: UITableViewController, UIGestureRecognizerDelegate {
     @objc private func add() {
         allertForAddAndEditing()
     }
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let task = indexPath.section == 0 ? inComlete[indexPath.row] : comletedTasks[indexPath.row]
         
