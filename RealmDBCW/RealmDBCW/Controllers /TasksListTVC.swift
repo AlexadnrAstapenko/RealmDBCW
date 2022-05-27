@@ -142,7 +142,20 @@ class TasksListTVC: UITableViewController {
                     }
                     self.tableView.reloadRows(at: indexPathArray, with: .automatic)
                 }
-                
+                else if !isertions.isEmpty {
+                    var indexPathArray = [IndexPath]()
+                    for row in modification {
+                        indexPathArray.append(IndexPath(row: row, section: 0))
+                    }
+                    self.tableView.reloadRows(at: indexPathArray, with: .automatic)
+                }
+                else if !deletions.isEmpty {
+                    var indexPathArray = [IndexPath]()
+                    for row in modification {
+                        indexPathArray.append(IndexPath(row: row, section: 0))
+                    }
+                    self.tableView.reloadRows(at: indexPathArray, with: .automatic)
+                }
             case let .error(error):
                 print("error on observer \(error)")
             }
